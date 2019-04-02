@@ -2,6 +2,7 @@ package com.example.myrecipe;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -24,14 +25,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + "(PRODUCT_ID INTEGER PRIMARY KEY AUTOINCREMENT , PRODUCT_NAME TEXT, WEIGHT REAL,PRICE REAL,DESCRIPTION TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " (PRODUCT_ID INTEGER PRIMARY KEY AUTOINCREMENT,PRODUCT_NAME TEXT,WEIGHT REAL,PRICE REAL,DESCRIPTION TEXT);");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-        //onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
     }
 
     public boolean insertData(String pro_name , String weight,String price, String description){
@@ -48,6 +49,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }else
             return true;
+    }
+
+
+    //Get All information from database and return cursor object
+    public Cursor getInfromatiom(SQLiteDatabase db){
+        Cursor cursor;
+
+        //projections - needed column names
+        String[] projection = {COL_2,COL_3,COL_4,COL_5};
+
+        cursor = db.query(TABLE_NAME,projection,null,null,null,null,COL_2);
+        return cursor;
+
     }
 
 }

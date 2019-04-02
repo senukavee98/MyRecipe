@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void editProduct(View view) {
         Log.d(LOG_TAG,"Edit Product Button is clicked");
+
+        Intent intent = new Intent(this,DataListDisplay.class);
+        startActivity(intent);
     }
 
     public void search(View view) {

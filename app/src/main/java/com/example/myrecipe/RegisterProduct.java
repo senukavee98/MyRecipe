@@ -19,6 +19,7 @@ public class RegisterProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_product);
 
+        //DB
         myDb = new DatabaseHelper(this);
 
         productName = findViewById(R.id.product_name_editbox);
@@ -31,6 +32,7 @@ public class RegisterProduct extends AppCompatActivity {
 
     }
 
+    //addData Method
     public void addData(){
 
         saveButton.setOnClickListener(new View.OnClickListener() {
