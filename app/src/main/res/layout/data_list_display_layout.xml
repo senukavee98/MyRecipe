@@ -18,14 +18,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.721"
-        app:srcCompat="@drawable/pic7" />
+        app:srcCompat="@drawable/pic8" />
 
     <ListView
         android:id="@+id/product_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-    </ListView>
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>

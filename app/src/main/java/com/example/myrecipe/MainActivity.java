@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void search(View view) {
         Log.d(LOG_TAG,"Search Button is clicked");
+        Intent intent = new Intent(this,SearchProduct.class);
+        startActivity(intent);
     }
 
     public void recipes(View view) {

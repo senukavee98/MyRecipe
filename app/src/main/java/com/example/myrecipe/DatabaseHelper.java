@@ -57,11 +57,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor;
 
         //projections - needed column names
-        String[] projection = {COL_2,COL_3,COL_4,COL_5};
+        String[] projection = {COL_1,COL_2,COL_3,COL_4,COL_5};
 
         cursor = db.query(TABLE_NAME,projection,null,null,null,null,COL_2);
         return cursor;
 
+    }
+
+    //Get info for Search
+    public Cursor getProductInfo(String name , SQLiteDatabase db){
+
+        String[] projections = {COL_1 ,COL_2,COL_3,COL_4, COL_5};
+        String selction = COL_2 + " LIKE ?";
+        String[] selection_arg = {name};
+        Cursor cursor = db.query(TABLE_NAME,projections,selction,selection_arg,null,null,null);
+
+        return cursor;
     }
 
 }

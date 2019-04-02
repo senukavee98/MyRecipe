@@ -38,7 +38,7 @@ public class DataListDisplay extends AppCompatActivity {
                 name = cursor.getString(1);
                 weight = cursor.getString(2);
                 price = cursor.getString(3);
-                description = cursor.getString(3);
+                description = cursor.getString(4);
 
                 //DataProvide constructor
                 DataProvider dataProvider = new DataProvider(id,name,weight,price,description);
