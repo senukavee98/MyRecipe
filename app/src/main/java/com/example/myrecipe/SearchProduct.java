@@ -32,8 +32,7 @@ public class SearchProduct extends AppCompatActivity {
         descriptionSearch = findViewById(R.id.description_search);
 
     }
-
-
+    
 
     public void searchProduct(View view) {
 
@@ -41,14 +40,16 @@ public class SearchProduct extends AppCompatActivity {
         description = editTextSearch.getText().toString();
         databaseHelper = new DatabaseHelper(this);
         myDb = databaseHelper.getReadableDatabase();
-        Cursor cursor = databaseHelper.getProductInfo(name,myDb);
+        Cursor cursor1 = databaseHelper.getProductInfo(name,myDb);
 
-        if (cursor.moveToFirst()){
-            String ID = cursor.getString(0);
-            String NAME = cursor.getString(1);
-            String WEIGHT = cursor.getString(2);
-            String PRICE = cursor.getString(3);
-            String DESCRIPTION = cursor.getString(4);
+
+        if (cursor1.moveToFirst()){
+            String ID = cursor1.getString(0);
+            String NAME = cursor1.getString(1);
+            String WEIGHT = cursor1.getString(2);
+            String PRICE = cursor1.getString(3);
+            String DESCRIPTION = cursor1.getString(4);
+
 
             idSearch.setText(ID);
             nameSearch.setText(NAME);
@@ -56,8 +57,8 @@ public class SearchProduct extends AppCompatActivity {
             priceSearch.setText(PRICE);
             descriptionSearch.setText(DESCRIPTION);
 
-        }
 
+        }
 
     }
 }

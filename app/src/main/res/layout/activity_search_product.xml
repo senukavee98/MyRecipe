@@ -221,7 +221,7 @@
         app:layout_constraintStart_toEndOf="@+id/Description"
         app:layout_constraintTop_toBottomOf="@+id/price_search" />
 
-
+<!-- Add check box to the java class, try it inside a loop -->
 
 
 </android.support.constraint.ConstraintLayout>

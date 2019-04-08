@@ -65,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Get info for Search
-    public Cursor getProductInfo(String name , SQLiteDatabase db){
+    public Cursor getProductInfo(String name ,SQLiteDatabase db){
 
         String[] projections = {COL_1 ,COL_2,COL_3,COL_4, COL_5};
         String selction = COL_2 + " LIKE ?";
