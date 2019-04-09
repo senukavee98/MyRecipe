@@ -1,11 +1,15 @@
 package com.example.myrecipe;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +17,16 @@ import java.util.List;
 public class ListDataAdapter extends ArrayAdapter {
 
     List list = new ArrayList();
+    Context context;
+    SQLiteDatabase myDb;
+    DatabaseHelper databaseHelper;
 
     public ListDataAdapter(Context context, int resource) {
         super(context, resource);
     }
 
     static class LayoutHandler{
-
         TextView ID,NAME,WEIGHT,PRICE,DESCRIPTION;
-
-
     }
 
     @Override
@@ -47,10 +51,15 @@ public class ListDataAdapter extends ArrayAdapter {
         View row = convertView;
         LayoutHandler layoutHandler;
 
+        //CheckBox
+       // CheckBox tickBox = row.findViewById(R.id.tick_box);
+        //setTag for the checkbox
+        //tickBox.setTag(position);
+
          //check whether row is null
         if (row==null){
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = layoutInflater.inflate(R.layout.row_layout,parent,false);
+            row = layoutInflater.inflate(R.layout.rowlist_layout,parent,false);
             layoutHandler = new LayoutHandler();
 
             layoutHandler.ID = row.findViewById(R.id.product_id_ep);
@@ -74,6 +83,7 @@ public class ListDataAdapter extends ArrayAdapter {
         layoutHandler.PRICE.setText(dataProvider.getPrice());
         layoutHandler.DESCRIPTION.setText(dataProvider.getDescription());
 
+      
         return row;
     }
 }
