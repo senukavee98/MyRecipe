@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.lang.annotation.Target;
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyRecipe.db";
@@ -51,6 +54,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public Cursor getListContent(){
+        SQLiteDatabase mydb  = this.getWritableDatabase();
+        Cursor data = mydb.rawQuery("SELECT * FROM " + TABLE_NAME , null);
+        return data;
+
+    }
+
 
     //Get All information from database and return cursor object
     public Cursor getInfromatiom(SQLiteDatabase db){
@@ -73,6 +83,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_NAME,projections,selction,selection_arg,null,null,null);
 
         return cursor;
+    }
+
+
+    //getting db data for displayInformation
+    public Cursor getProductName(SQLiteDatabase db ){
+        Cursor cursor;
+
+        String[] projection = {COL_1,COL_2};
+        cursor = db.query(TABLE_NAME,projection,null,null,null,null,COL_2);
+        return cursor;
+    }
+
+    //getting db data for displayInformation
+    public ArrayList<DataProvider> getAllStudentData(){
+
+        ArrayList<DataProvider> list = new ArrayList<>();
+        String sql = "SELECT * FROM " + TABLE_NAME ;
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery(sql,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                DataProvider dataProvider = new DataProvider();
+
+                dataProvider.setId(cursor.getString(0));
+                dataProvider.setProductName(cursor.getString(1));
+                dataProvider.setWeight(cursor.getString(2));
+                dataProvider.setPrice(cursor.getString(3));
+                dataProvider.setDescription(cursor.getString(4));
+                list.add(dataProvider);
+
+            }while (cursor.moveToNext());
+        }
+        return list;
     }
 
 }

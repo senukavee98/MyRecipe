@@ -10,6 +10,7 @@ public class DataProvider {
     private String weight;
     private String price;
     private String description;
+    private String activity;
 
     public DataProvider(String id, String productName, String weight, String price, String description) {
         this.id = id;
@@ -17,6 +18,9 @@ public class DataProvider {
         this.weight = weight;
         this.price = price;
         this.description = description;
+    }
+
+    public DataProvider() {
     }
 
     // Getters and Setters

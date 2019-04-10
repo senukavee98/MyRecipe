@@ -52,7 +52,7 @@ public class ListDataAdapter extends ArrayAdapter {
         LayoutHandler layoutHandler;
 
         //CheckBox
-       // CheckBox tickBox = row.findViewById(R.id.tick_box);
+        //CheckBox tickBox = row.findViewById(R.id.tick_box);
         //setTag for the checkbox
         //tickBox.setTag(position);
 
@@ -83,7 +83,6 @@ public class ListDataAdapter extends ArrayAdapter {
         layoutHandler.PRICE.setText(dataProvider.getPrice());
         layoutHandler.DESCRIPTION.setText(dataProvider.getDescription());
 
-      
         return row;
     }
 }

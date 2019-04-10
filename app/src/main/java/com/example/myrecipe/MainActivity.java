@@ -10,10 +10,13 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
+    DatabaseHelper mydb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mydb = new DatabaseHelper(this);
     }
 
 
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayProduct(View view) {
         Log.d(LOG_TAG,"Display Product Button is clicked");
+        Intent intent = new Intent(this,DataListDisplay.class);
+        startActivity(intent);
 
     }
 
@@ -36,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public void editProduct(View view) {
         Log.d(LOG_TAG,"Edit Product Button is clicked");
 
-        Intent intent = new Intent(this,DataListDisplay.class);
+        Intent intent = new Intent(this,ViewListContext.class);
         startActivity(intent);
     }
 

@@ -1,5 +1,6 @@
 package com.example.myrecipe;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -21,11 +22,11 @@ public class DataListDisplay extends AppCompatActivity {
     ListView productList;
     SQLiteDatabase myDb;
     DatabaseHelper databaseHelper;
+    DataProvider dataProvider;
     Cursor cursor;
     ListDataAdapter listDataAdapter;
-    ArrayList<String> selectedItems = new ArrayList<>(); // selected items
     public static boolean isActionMode = false;
-    public static List<String> userSelection = new ArrayList<>();
+    public static List<String> userSelection = new ArrayList<>(); // selected items
     public static ActionMode actionMode = null;
 
     @Override
@@ -34,7 +35,8 @@ public class DataListDisplay extends AppCompatActivity {
         setContentView(R.layout.data_list_display_layout);
 
         productList = findViewById(R.id.product_list);
-       // productList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        productList.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+        productList.setMultiChoiceModeListener(modeListener);
 
      //------------------- connect with row layout ---------------//
         listDataAdapter = new ListDataAdapter(getApplicationContext(),R.layout.rowlist_layout);
@@ -63,7 +65,45 @@ public class DataListDisplay extends AppCompatActivity {
 
             }while (cursor.moveToNext()); //return whether another row is available
         }
+
+
+        productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                dataProvider = (DataProvider) listDataAdapter.getItem(position);
+                Intent intent = new Intent(DataListDisplay.this,ShowInformation.class);
+                startActivity(intent);
+
+            }
+        });
     }
+
+    AbsListView.MultiChoiceModeListener modeListener = new AbsListView.MultiChoiceModeListener() {
+        @Override
+        public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+
+        }
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            return false;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+
+        }
+    };
 
 
     public void showSelctedItems(View view) {
